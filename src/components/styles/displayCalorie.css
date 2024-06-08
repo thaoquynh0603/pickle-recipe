@@ -1,0 +1,16 @@
+.recipeContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.recipeCard{
+    width: 40%;
+}
+
+.MuiPaper-root{
+    padding: 10px;
+    margin-top: 10px;
+    max-width: 45%;
+}

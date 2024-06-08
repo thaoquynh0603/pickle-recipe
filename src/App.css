@@ -7,6 +7,42 @@
   pointer-events: none;
 }
 
+.MuiInputBase-root {
+  margin-bottom: 20px !important;
+}
+.textField{
+  width: 90%;
+  /* margin-bottom: 26px; */
+  /* margin-top: 50px; */
+  /* height: 500px; */
+}
+
+.title{
+  font-size: 3.5em;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  /* margin-bottom: 40px; */
+  /* width: 50%; */
+}
+
+.subtitle{
+  font-size: 1.5em;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.leftAlign{
+  text-align: left;
+  margin-left: 40px;
+  font-weight: 300;
+
+}
+.divMargin{
+  margin-top: 20px;
+}
 .sideBar {
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 30%; /* Set the width of the sidebar */
@@ -23,4 +59,45 @@
   margin-left: 30%; /* Same as the width of the sidebar */
   padding: 0px 10px;
   /* display: flex; */
+}
+
+h1{
+  font-size: 2.5em;
+  font-weight: 300;
+  margin-top: 10px;
+  padding: 0;
+}
+
+h2{
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.MuiButton-root {
+  background-color: rgb(15, 111, 81) !important;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Or any height you prefer */
+}
+
+.pickleImg {
+  width: 400px; /* Adjust the size as needed */
+  height: 400px; /* Adjust the size as needed */
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sideBarTitle{
+  /* display: flex; */
+  /* justify-content: space-around */
+}
+
+.pickleLogo{
+  width: 40%;
+  height: 180px;
+  margin-right: 10px;
 }

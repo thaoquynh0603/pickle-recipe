@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
 import './styles/enterIngredients.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import { UserContext } from '../UserContext';
 
 function EnterIngredients() {
+    const { userData } = useContext(UserContext);
+
     const [formData, setFormData] = useState({
-        email: '',
         ingredients: '',
         times: '',
         difficulty: ''
@@ -21,66 +23,82 @@ function EnterIngredients() {
         });
     };
 
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const submissionData = {
+            email: userData.email,
+            ...formData
+        };
         try {
-            const response = await axios.post('http://localhost:5000/submit', formData);
+            // console.log('Email to send', userData.email);
+            // console.log('Email record', submissionData.email);
+            const response = await axios.post('http://localhost:5000/submit', submissionData);
             console.log(response.data);
             // You can display a success message or handle the response as needed
         } catch (error) {
             console.error('There was an error submitting the form:', error);
         }
     };
+  
 
     return (
-        <div className='sideBar'>
-            <h1>PICKLE RECIPE</h1>
-            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-                <TextField
-                    required
-                    className='emailInput'
-                    id="email"
-                    label="Enter Your Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-                <div className='Container'>
-                    <TextField
-                        required
-                        className='ingredientInput'
-                        id="ingredients"
-                        label="What ingredients do you have?"
-                        multiline
-                        rows={15}
-                        variant="standard"
-                        value={formData.ingredients}
-                        onChange={handleChange}
-                    />
+        <div>
+            {userData.isAuthenticated ? (
+                <div>
+                    <p className='greeting'>Hello, {userData.name}</p>
+                        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+                            {/* <TextField
+                            required
+                            className='emailInput'
+                            id="email"
+                            label="Enter Your Email"
+                            value={formData.email}
+                            defaultValue={userData.email}
+                            onChange={handleChange} // Disable email input
+                            style={{ display: 'none' }} // Hide the email input
+                        /> */}
+                        <div className='Container'>
+                            <TextField
+                                required
+                                className='ingredientInput textField'
+                                id="ingredients"
+                                label="What ingredients do you have?"
+                                multiline
+                                rows={5}
+                                variant="standard"
+                                value={formData.ingredients}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <Box className='instructionContainer'>
+                            <TextField
+                                className='instructionInput timeInput'
+                                id="times"
+                                label="Times"
+                                value={formData.times}
+                                onChange={handleChange}
+                            />
+                            <TextField
+                                className='instructionInput difficultyInput'
+                                id="difficulty"
+                                label="Difficulty"
+                                value={formData.difficulty}
+                                onChange={handleChange}
+                            />
+                        </Box>
+                        <Button 
+                            variant="contained"
+                            className='inputButton'
+                            type="submit"
+                        >
+                            START COOKING!!!
+                        </Button>
+                    </form>
                 </div>
-                <Box className='instructionContainer'>
-                    <TextField
-                        className='instructionInput timeInput'
-                        id="times"
-                        label="Times"
-                        value={formData.times}
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        className='instructionInput difficultyInput'
-                        id="difficulty"
-                        label="Difficulty"
-                        value={formData.difficulty}
-                        onChange={handleChange}
-                    />
-                </Box>
-                <Button 
-                    variant="contained"
-                    className='inputButton'
-                    type="submit"
-                >
-                    START COOKING!!!
-                </Button>
-            </form>
+                ) : (
+                <p>Please log in or register.</p>
+            )}
         </div>
     );
 }
