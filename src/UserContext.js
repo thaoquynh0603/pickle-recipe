@@ -1,16 +1,16 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
-
+require('dotenv').config();
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [userData, setUserData] = useState({ email: '', isAuthenticated: false });
-    const AIRTABLE_TOKEN='patKuyFaQvM0pJ4AV.c671b89191b773332918e2c1b79f9719d19d3517ec5a2e49d85e9fab2a27a1f1';
+    const airtableToken = process.env.AIRTABLE_TOKEN_READ;
     const fetchUserName = async (email) => {
         try {
             const response = await axios.get(`https://api.airtable.com/v0/appIQYAnCAABYkQtE/users?filterByFormula=email+%3D+"${email}"`, {
                 headers: {
-                    Authorization: `Bearer ${AIRTABLE_TOKEN}`
+                    Authorization: `Bearer ${airtableToken}`
                 }
             });
     

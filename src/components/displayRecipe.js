@@ -12,20 +12,21 @@ import Collapse from '@mui/material/Collapse';
 import CardMedia from '@mui/material/CardMedia';
 import { UserContext } from '../UserContext';
 import './styles/displayRecipe.css';
+require('dotenv').config();
 
 function RecipeCard() {
     const { userData } = useContext(UserContext);
     const [recipeData, setRecipeData] = useState([]);
     const [expandedCardId, setExpandedCardId] = useState(null);
 
-    const AIRTABLE_TOKEN='patKuyFaQvM0pJ4AV.c671b89191b773332918e2c1b79f9719d19d3517ec5a2e49d85e9fab2a27a1f1';
+    const airtableToken = process.env.AIRTABLE_TOKEN_READ;
     console.log('Data Name', userData.name);
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`https://api.airtable.com/v0/appIQYAnCAABYkQtE/recipes?filterByFormula=users+%3D+"${userData.name}"`, {
                     headers: {
-                        Authorization: `Bearer ${AIRTABLE_TOKEN}`, 
+                        Authorization: `Bearer ${airtableToken}`, 
                     },
                 });
                 
