@@ -1,0 +1,38 @@
+
+.emailInput{
+    width: 90%;
+    height: 50px;
+}
+
+.Container{
+    /* width: 90%; */
+    margin-top: 20px;
+}
+.instructionContainer{
+    /* width: 90%; */
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 20px;
+}
+
+.instructionInput{
+    width: 48%;
+    /* margin-top: 50px; */
+    /* height: 500px; */
+
+}
+
+.ingredientInput{
+    width: 90%;
+    /* margin-top: 50px; */
+    /* height: 500px; */
+}
+
+.inputButton{
+    width: 90%;
+    height: 50px;
+    margin-top: 20px;
+}
